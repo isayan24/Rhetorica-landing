@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: var(--font-poppins), sans-serif;
+  --font-poppins: var(--font-poppins), sans-serif;
+  --font-montserrat: var(--font-montserrat), sans-serif;
+  --font-pirata: var(--font-pirata), serif;
+}
+
+:root {
+  --background: #ffffff;
+  --foreground: #000000;
+}
+
+html {
+  scroll-behavior: smooth;
+  background-color: var(--background);
+  color: var(--foreground);
+}
+
+body {
+  font-family: var(--font-poppins);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #efe0be33;
+}
+::-webkit-scrollbar-thumb {
+  background: #a38965;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #836d4f;
+}
+
+/* Custom continuous marquee animation for logo collaborations */
+@keyframes slide-infinite {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee {
+  display: flex;
+  width: max-content;
+  animation: slide-infinite 30s linear infinite;
+}
+
+.animate-marquee:hover {
+  animation-play-state: paused;
+}
+
+/* Custom bounce/pop animation for countdown values */
+@keyframes pop {
+  0% {
+    transform: scale(0.9);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-pop {
+  animation: pop 0.5s ease-out forwards;
+}
