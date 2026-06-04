@@ -36,22 +36,19 @@ export const CollaborationsSection: React.FC = () => {
         viewport={{ once: true }}
         className="text-center mb-16 px-6"
       >
-        <h2 className="font-pirata text-5xl md:text-6xl text-neutral-950 tracking-wider">Collaborations</h2>
+        <h2 className="font-pirata text-5xl md:text-6xl text-neutral-950 tracking-wider">
+          Collaborations
+        </h2>
       </motion.div>
 
-      {/* Responsive Swiper Slider for logos */}
       <div className="w-full relative px-6 md:px-16">
-        {/* Soft edge gradients for a premium fading blend */}
-        <div className="absolute top-0 bottom-0 left-0 w-16 bg-gradient-to-r from-white to-transparent z-10 pointer-events-none" />
-        <div className="absolute top-0 bottom-0 right-0 w-16 bg-gradient-to-l from-white to-transparent z-10 pointer-events-none" />
-
         <Swiper
           autoplay={{
-            delay: 2000, // Pauses on each image in the front for 2 seconds
+            delay: 2000,
             disableOnInteraction: false,
-            pauseOnMouseEnter: false, // Ensure animation does not pause on mouse hover
+            pauseOnMouseEnter: false,
           }}
-          speed={1000} // Smooth transition speed between slides
+          speed={1000}
           loop={true}
           spaceBetween={40}
           slidesPerView={2}
@@ -71,9 +68,9 @@ export const CollaborationsSection: React.FC = () => {
           {LOGOS.map((src, idx) => (
             <SwiperSlide
               key={idx}
-              className="flex items-center justify-center bg-transparent border-0 p-0 shadow-none hover:scale-105 transition-transform duration-300 ease-out cursor-pointer"
+              className="flex items-center justify-center bg-transparent border-0 p-0 shadow-none transition-transform duration-300 ease-out cursor-pointer"
             >
-              <div className="w-36 h-20 flex items-center justify-center">
+              <div className="w-[7rem] h-[7rem] flex items-center justify-center">
                 <img
                   src={src}
                   alt="Partner logo"

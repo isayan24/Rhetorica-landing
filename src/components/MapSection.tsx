@@ -4,14 +4,15 @@ import React from "react";
 import { motion } from "framer-motion";
 
 const GOOGLE_MAPS_EMBED =
-  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.282823616644!2d88.47352797604677!3d22.568523033100346!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0274c653303d8b%3A0xe9634d0b1784eb96!2sTechno%20International%20New%20Town!5e0!3m2!1sen!2sin!4v1717300000000!5m2!1sen!2sin";
+  "https://maps.google.com/maps?q=22.578254554983403, 88.47577642832206&hl=en&z=17&output=embed";
 
 export const MapSection: React.FC = () => {
   return (
-    <section id="map" className="bg-white py-12 md:py-20 w-full overflow-hidden">
+    <section
+      id="map"
+      className="bg-white py-12 md:py-20 w-full overflow-hidden"
+    >
       <div className="max-w-7xl mx-auto px-6 md:px-16 flex flex-col lg:flex-row gap-12 lg:gap-16 items-stretch">
-        
-        {/* Left Column: Interactive Map Card */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -32,7 +33,6 @@ export const MapSection: React.FC = () => {
           />
         </motion.div>
 
-        {/* Right Column: Venue Details & Directions Guide */}
         <motion.div
           initial={{ opacity: 0, x: 30 }}
           whileInView={{ opacity: 1, x: 0 }}
@@ -40,13 +40,13 @@ export const MapSection: React.FC = () => {
           transition={{ duration: 0.8 }}
           className="w-full lg:w-1/2 flex flex-col justify-center gap-6"
         >
-          {/* Venue Heading */}
           <div className="flex flex-col gap-2">
             <h3 className="font-montserrat font-bold text-3xl md:text-[34px] leading-tight text-neutral-900 tracking-tight">
               Techno International New Town
             </h3>
             <p className="font-montserrat text-neutral-500 text-[15px] md:text-base leading-relaxed font-normal">
-              1/1, Service Rd, DG Block(Newtown), Action Area I, Newtown, Chakpachuria, West Bengal 700156
+              1/1, Service Rd, DG Block(Newtown), Action Area I, Newtown,
+              Chakpachuria, West Bengal 700156
             </p>
           </div>
 
@@ -58,7 +58,10 @@ export const MapSection: React.FC = () => {
             <ul className="flex flex-col gap-2.5 font-montserrat text-[15px] md:text-base text-neutral-800 font-normal">
               <li className="flex items-start gap-2">
                 <span className="font-semibold text-neutral-900">a.</span>
-                <span>15 mins from Netaji Subhash Chandra Bose International Airport.</span>
+                <span>
+                  15 mins from Netaji Subhash Chandra Bose International
+                  Airport.
+                </span>
               </li>
               <li className="flex items-start gap-2">
                 <span className="font-semibold text-neutral-900">b.</span>
@@ -73,7 +76,7 @@ export const MapSection: React.FC = () => {
 
           {/* Action Google Maps Button */}
           <a
-            href="https://maps.app.goo.gl/r55Wix57bY7F6n1v9"
+            href="https://www.google.com/maps/search/?api=1&query=22.578441030720008,88.4758137509812"
             target="_blank"
             rel="noopener noreferrer"
             className="w-full bg-[#00a651] hover:bg-[#008f45] text-white py-3 px-6 rounded-lg text-center font-montserrat font-semibold text-base transition-colors duration-200 flex items-center justify-center gap-2 cursor-pointer shadow-[0_4px_12px_rgba(0,166,81,0.15)] hover:shadow-[0_6px_16px_rgba(0,166,81,0.25)] select-none mt-2"
@@ -82,7 +85,6 @@ export const MapSection: React.FC = () => {
             <span className="text-lg leading-none">→</span>
           </a>
         </motion.div>
-
       </div>
     </section>
   );
