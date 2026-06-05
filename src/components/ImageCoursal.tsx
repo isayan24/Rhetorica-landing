@@ -38,9 +38,8 @@ export default function ImageCoursal() {
   return (
     <section
       id="events"
-      className="bg-[#EFE0BE] py-24 overflow-hidden relative w-full flex flex-col items-center"
+      className="bg-[#EFE0BE] py-10 overflow-hidden relative w-full flex flex-col items-center"
     >
-      {/* Section Heading */}
       <div className="flex flex-col items-center text-center mb-10 px-6">
         <h2 className="font-pirata text-5xl md:text-6xl text-neutral-950 tracking-wider">
           Events
@@ -51,7 +50,7 @@ export default function ImageCoursal() {
       <div className="w-full relative">
         <ThreeDImageCarousel
           slides={EVENTS}
-          itemCount={5}
+          itemCount={3}
           autoplay={true}
           delay={3}
           showArrows={false}

@@ -1,3 +1,5 @@
+// lightswind component library https://lightswind.com
+
 "use client";
 import { ArrowLeftCircle, ArrowRightCircle } from "lucide-react";
 import React, { useState, useEffect, useRef, useCallback } from "react";
@@ -46,17 +48,20 @@ const EMBEDDED_CSS = `
 .cascade-slider_slides {
     position: relative;
     height: 100%; 
+    perspective: 1200px;
+    transform-style: preserve-3d;
 }
 
 .cascade-slider_item {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%) scale(0.3); 
-    transition: all 1s ease; 
+    transform: translateY(-50%) translateX(-50%) translateZ(-300px) rotateY(0deg) scale(0.3); 
+    transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1); 
     opacity: 0;
     z-index: 1; 
     cursor: grab; 
+    transform-style: preserve-3d;
 }
 .cascade-slider_item.now {
     cursor: default;
@@ -65,23 +70,23 @@ const EMBEDDED_CSS = `
     cursor: grabbing;
 }
 
-/* Slide Positioning Classes (Core 3D Logic - MUST REMAIN IN CSS) */
+/* Mobile Default positions (screen < 640px) */
 .cascade-slider_item.next {
     left: 50%;
-    transform: translateY(-50%) translateX(-120%) scale(0.6);
-    opacity: 1;
+    transform: translateY(-50%) translateX(calc(-50% - 20vw)) translateZ(-100px) rotateY(20deg) scale(0.7);
+    opacity: 0.8;
     z-index: 4; 
 }
 .cascade-slider_item.prev {
     left: 50%;
-    transform: translateY(-50%) translateX(20%) scale(0.6);
-    opacity: 1;
+    transform: translateY(-50%) translateX(calc(-50% + 20vw)) translateZ(-100px) rotateY(-20deg) scale(0.7);
+    opacity: 0.8;
     z-index: 4; 
 }
 .cascade-slider_item.now {
     top: 50%;
     left: 50%;
-    transform: translateY(-50%) translateX(-50%) scale(1);
+    transform: translateY(-50%) translateX(-50%) translateZ(50px) rotateY(0deg) scale(1);
     opacity: 1;
     z-index: 5; 
 }
@@ -123,7 +128,6 @@ const EMBEDDED_CSS = `
     display: block;
     transition: filter 1s ease;
 }
-/* Tailwind handles the grayscale filter on hover if desired, but keeping the state-based one is better */
 .cascade-slider_item:not(.now) .cascade-slider_slide-img {
     filter: grayscale(0.95);
 }
@@ -132,29 +136,49 @@ const EMBEDDED_CSS = `
     height: 480px;
 }
 
-/* --- Media Queries (Minimized to only include structural layout changes) --- */
-@media screen and (min-width: 414px) {
-    .cascade-slider_container { height: 480px; }
+/* Media Queries for responsive 3D coverflow styling and viewport-relative gaps */
+@media screen and (min-width: 640px) {
+    .cascade-slider_item.next {
+        transform: translateY(-50%) translateX(calc(-50% - 24vw)) translateZ(-120px) rotateY(25deg) scale(0.75);
+        opacity: 0.9;
+    }
+    .cascade-slider_item.prev {
+        transform: translateY(-50%) translateX(calc(-50% + 24vw)) translateZ(-120px) rotateY(-25deg) scale(0.75);
+        opacity: 0.9;
+    }
+    .cascade-slider_container { height: 500px; }
 }
-@media screen and (min-width: 576px) {
+
+@media screen and (min-width: 768px) {
+    .cascade-slider_item.next {
+        transform: translateY(-50%) translateX(calc(-50% - 26vw)) translateZ(-150px) rotateY(30deg) scale(0.8);
+        opacity: 1;
+    }
+    .cascade-slider_item.prev {
+        transform: translateY(-50%) translateX(calc(-50% + 26vw)) translateZ(-150px) rotateY(-30deg) scale(0.8);
+        opacity: 1;
+    }
     .cascade-slider_container { height: 540px; }
 }
-@media screen and (min-width: 768px) {
-    .cascade-slider_item.next { transform: translateY(-50%) translateX(-130%) scale(0.6); }
-    .cascade-slider_item.prev { transform: translateY(-50%) translateX(30%) scale(0.6); }
-}
-@media screen and (min-width: 991px) {
-    .cascade-slider_item.next { transform: translateY(-50%) translateX(-135%) scale(0.65); z-index: 4; }
-    .cascade-slider_item.prev { transform: translateY(-50%) translateX(35%) scale(0.65); z-index: 4; }
-    .cascade-slider_item.next2 { transform: translateY(-50%) translateX(-210%) scale(0.45); z-index: 1; }
-    .cascade-slider_item.prev2 { transform: translateY(-50%) translateX(110%) scale(0.45); z-index: 2; }
+
+@media screen and (min-width: 1024px) {
+    .cascade-slider_item.next {
+        transform: translateY(-50%) translateX(calc(-50% - 28vw)) translateZ(-180px) rotateY(35deg) scale(0.85);
+    }
+    .cascade-slider_item.prev {
+        transform: translateY(-50%) translateX(calc(-50% + 28vw)) translateZ(-180px) rotateY(-35deg) scale(0.85);
+    }
     .cascade-slider_container { height: 600px; }
 }
-@media screen and (min-width: 1100px) {
-    .cascade-slider_item.next { transform: translateY(-50%) translateX(-140%) scale(0.65); }
-    .cascade-slider_item.prev { transform: translateY(-50%) translateX(40%) scale(0.65); }
-    .cascade-slider_item.next2 { transform: translateY(-50%) translateX(-220%) scale(0.45); }
-    .cascade-slider_item.prev2 { transform: translateY(-50%) translateX(120%) scale(0.45); }
+
+@media screen and (min-width: 1280px) {
+    .cascade-slider_item.next {
+        transform: translateY(-50%) translateX(calc(-50% - 30vw)) translateZ(-200px) rotateY(35deg) scale(0.88);
+    }
+    .cascade-slider_item.prev {
+        transform: translateY(-50%) translateX(calc(-50% + 30vw)) translateZ(-200px) rotateY(-35deg) scale(0.88);
+    }
+    .cascade-slider_container { height: 620px; }
 }
 `;
 
@@ -337,7 +361,7 @@ export const ThreeDImageCarousel: React.FC<ThreeDImageCarouselProps> = ({
 
                   {/* Subtitle centered directly under the arch */}
                   <div className="text-center mt-2">
-                    <h4 className="font-sans font-medium text-xs md:text-sm text-neutral-900 tracking-wide uppercase">
+                    <h4 className="font-sans font-medium text-sm md:text-lg text-neutral-900 tracking-wide uppercase">
                       {slide.category}
                     </h4>
                   </div>
