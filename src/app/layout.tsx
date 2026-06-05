@@ -23,6 +23,9 @@ const pirataOne = Pirata_One({
 export const metadata: Metadata = {
   title: "Rhetorica '26 | Annual Literary Festival of Techno International New Town",
   description: "Rhetorica '26 is the Annual Literary Festival of Techno International New Town.",
+  icons: {
+    icon: "/icon.png",
+  },
   openGraph: {
     title: "Rhetorica '26 | Annual Literary Festival",
     description: "Join us for Rhetorica '26, the Annual Literary Festival of Techno International New Town.",
